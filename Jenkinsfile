@@ -78,7 +78,7 @@ pipeline {
                             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
 
                             // sh "cp ${env.BUILD_ID}/sources/dist/add2vals /home/ubuntu/pyout"   // Permission error.
-                            fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: "${env.BUILD_ID}/sources/dist/add2vals**", targetLocation: '/home/ubuntu/pyout')])
+                            fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: "${env.BUILD_ID}/sources/dist/add2vals", targetLocation: '/home/ubuntu/pyout')])
                         }
                     }
         }
