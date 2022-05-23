@@ -78,19 +78,7 @@ pipeline {
                             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
 
                             // sh "cp ${env.BUILD_ID}/sources/dist/add2vals /home/ubuntu/pyout"   // Permission error.
-                            script {
-                                File sourceFolder = new File("${env.BUILD_ID}/sources/dist/add2vals");
-                                File  destinationFolder = new File("/home/ubuntu/pyout");
-                                File[] listOfFiles = sourceFolder.listFiles();
-                                echo "Files Total: " + listOfFiles.length;
-
-                                for (File file : listOfFiles) {
-                                    if (file.isFile()) {
-                                        echo file.getName()
-                                        Files.copy(Paths.get(file.path), Paths.get("/home/ubuntu/pyout"));
-                                    }
-                                }
-                            }
+                            fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: "${env.BUILD_ID}/sources/dist/add2vals**", targetLocation: '/home/ubuntu/pyout')])
                         }
                     }
         }
