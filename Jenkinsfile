@@ -76,7 +76,7 @@ pipeline {
                             //through the Jenkins interface.
                             archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
                             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
-                            sh "sudo cp ${env.BUILD_ID}/sources/dist/add2vals /home/ubuntu"
+                            sh "sudo cp ${env.BUILD_ID}/sources/dist/add2vals /home/ubuntu/pyout"
                         }
                     }
         }
