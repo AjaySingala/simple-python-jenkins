@@ -76,6 +76,10 @@ pipeline {
                             //through the Jenkins interface.
                             archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals"
                             sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
+
+                            //sh "cp ${env.BUILD_ID}/sources/dist/* /home/ubuntu/pyout"   // Permission error.
+                            sh "cp /home/ubuntu/test.txt /home/ubuntu/pyout"   // Permission error.
+                            // fileOperations([fileCopyOperation(excludes: '', flattenFiles: false, includes: "${env.BUILD_ID}/sources/dist/add2vals", targetLocation: '/home/ubuntu/pyout')])
                         }
                     }
         }
